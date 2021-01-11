@@ -1,8 +1,8 @@
-project "editor" -- a good enough project name for the project which literally is the engine
+project "usingLogSystem" -- a good enough project name for the project which literally is the engine
     kind "ConsoleApp"
     language "C++" 
     cppdialect "C++17" -- better go with the best fully supported standrad for c++ as of this writing.
-    
+
     targetdir ("../bin/"..outputdir.."/%{prj.name}")
     objdir    ("../bin-int/"..outputdir.."/%{prj.name}")
 
@@ -10,10 +10,10 @@ project "editor" -- a good enough project name for the project which literally i
     pchsource "src/PCH/stdafx.cpp"
 
     files{
-        "src/**.h",
-        "src/**.hxx",
         "src/**.hpp",
-        "src/**.cpp"
+        "src/**.hxx",
+        "src/**.h",
+        "src/**.cpp",
     }
 
     defines{
@@ -26,14 +26,14 @@ project "editor" -- a good enough project name for the project which literally i
         "src/PCH"
     }
 
-    links
-    {
+    links{
         "pengrudium2D"
     }
 
     filter "configurations:debug"
         defines{
-          "PE_DEBUG"
+          "PE_DEBUG",
+          "EX_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -41,7 +41,8 @@ project "editor" -- a good enough project name for the project which literally i
         
     filter "configurations:release"
         defines{
-            "PE_SHIP"
+            "PE_SHIP",
+            "EX_SHIP"
         }
         runtime "Release"
         optimize "on"
