@@ -31,4 +31,4 @@ workspace "pengrudium2DTests"
     include "../pengrudium2D"
 
     --the tests included must have their own premake5.lua file in their own folder..
-    include "test001"
+    include "logTest"

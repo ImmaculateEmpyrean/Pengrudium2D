@@ -1,4 +1,4 @@
-project "test001" -- a good enough project name for the project which literally is the engine
+project "logTest" -- a good enough project name for the project which literally is the engine
     kind "ConsoleApp"
     language "C++" 
     cppdialect "C++17" -- better go with the best fully supported standrad for c++ as of this writing.

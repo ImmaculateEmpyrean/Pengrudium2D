@@ -40,15 +40,15 @@ namespace penguin2D
 		{
 			switch (level)
 			{
+			case 0: logObject.get()->trace(logToWrite...);
+				break;
 			case 1: logObject.get()->info(logToWrite...);
 				break;
-			case 2: logObject.get()->trace(logToWrite...);
+			case 2: logObject.get()->warn(logToWrite...);
 				break;
-			case 3: logObject.get()->warn(logToWrite...);
+			case 3: logObject.get()->error(logToWrite...);
 				break;
-			case 4: logObject.get()->error(logToWrite...);
-				break;
-			case 5: logObject.get()->critical(logToWrite...);
+			case 4: logObject.get()->critical(logToWrite...);
 				break;
 			default: logObject.get()->critical("logger level is not as expected.. using error as a fallback");
 					 logObject.get()->error(logToWrite...);
