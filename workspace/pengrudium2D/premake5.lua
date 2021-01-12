@@ -13,7 +13,8 @@ project "pengrudium2D" -- a good enough project name for the project which liter
         "include/**.h",
         "include/**.hpp",
         "include/**.hxx",
-        "src/**.cpp"
+        "src/**.cpp",
+        "src/PCH/stdafx.h",
     }
 
     defines{
