@@ -50,8 +50,9 @@ namespace penguin2D
 				break;
 			case 4: logObject.get()->critical(logToWrite...);
 				break;
-			default: logObject.get()->critical("logger level is not as expected.. using error as a fallback");
-					 logObject.get()->error(logToWrite...);
+			default: 
+				logObject.get()->critical("logger level is not as expected unable to log at chosen level defaulting to error..");
+				logObject.get()->error(logToWrite...);
 				break;
 			}
 		}
@@ -59,15 +60,14 @@ namespace penguin2D
 }
 
 #if defined(PE_DEBUG)
-	#define logConsole(level,...)	penguin2D::log::write	 (penguin2D::log::getConsoleLogger(),level,__VA_ARGS__);
-	#define logFile(strength,...)	penguin2D::fileLog::write(penguin2D::log::getFileLogger(),level,__VA_ARGS__);
+	#define logConsole(level,...)	penguin2D::log::write(penguin2D::log::getConsoleLogger(),level,__VA_ARGS__);
+	#define logFile(level,...)		penguin2D::log::write(penguin2D::log::getFileLogger(),level,__VA_ARGS__);
 	
-	#define log(strength,...)		penguin2D::log::write	 (penguin2D::log::getConsoleLogger(),level,__VA_ARGS__);\
-									penguin2D::fileLog::write(penguin2D::log::getFileLogger(), level, __VA_ARGS__);
+	#define log(level,...)			penguin2D::log::write(penguin2D::log::getConsoleLogger(),level,__VA_ARGS__);\
+									penguin2D::log::write(penguin2D::log::getFileLogger()   ,level, __VA_ARGS__);
 
 #else
-#define consoleLog(strength,...)		
-#define fileLog(strength,...)			
-#define log(strength,...)				
-
+#define consoleLog(level,...)		
+#define fileLog(level,...)			
+#define log(level,...)
 #endif 
