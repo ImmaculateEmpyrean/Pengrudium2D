@@ -1,5 +1,5 @@
 #pragma once
-namespace engineLogCheck
+namespace editorLogCheck
 {
 	void performChecks();
 }

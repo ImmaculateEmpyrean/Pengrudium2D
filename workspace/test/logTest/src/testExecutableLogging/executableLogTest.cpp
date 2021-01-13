@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "engineLogTest.h"
+#include "executableLogTest.h"
 
 #undef PEngine_DEBUG
 #undef PExecutable_DEBUG
@@ -7,12 +7,12 @@
 #undef PExample_DEBUG
 #undef PTest_DEBUG
 
-#define PEngine_DEBUG
+#define PExecutable_DEBUG
 
 #include "../LogTest.h"
 
 
-namespace engineLogCheck
+namespace executableLogCheck
 {
 	void performChecks()
 	{

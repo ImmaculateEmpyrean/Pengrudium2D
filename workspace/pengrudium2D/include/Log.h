@@ -22,8 +22,6 @@ namespace penguin2D
 		fileLog(const std::string& logName);
 	
 	public:
-		std::shared_ptr<spdlog::logger> m_log_handle = nullptr; //this is the global file to which all logs are to be written..
-		
 		std::shared_ptr<spdlog::logger> m_log_trace_handle		= nullptr;
 		std::shared_ptr<spdlog::logger> m_log_info_handle			= nullptr;
 		std::shared_ptr<spdlog::logger> m_log_warn_handle			= nullptr;
@@ -202,8 +200,33 @@ namespace penguin2D
 #define logCritical(...)		logConsoleCritical(__VA_ARGS__);\
 									logFileCritical(__VA_ARGS__);
 #else
-#define logConsole(level,...) //log replaced with nothing as no relevant symbol was found..
-#define logFile(level,...)	  //log replaced with nothing as no relevant symbol was found..		
+#define logConsoleTrace(...)	
+#define logConsoleInfo(...)		
+#define logConsoleWarn(...)		
+#define logConsoleError(...)	
+#define logConsoleCritical(...)	
 
-#define log(level,...)		  //log replaced with nothing as no relevant symbol was found..
+
+#define logFileTrace(...)		
+#define logFileInfo(...)		
+#define logFileWarn(...)		
+#define logFileError(...)		
+#define logFileCritical(...)	
+
+
+#define logTrace(...)			
+								
+
+
+#define logInfo(...)			
+								
+
+#define logWarn(...)			
+								
+
+#define logError(...)			
+								
+
+#define logCritical(...)		
+								
 #endif 

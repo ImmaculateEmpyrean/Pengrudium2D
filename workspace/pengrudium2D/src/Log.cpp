@@ -32,7 +32,7 @@ namespace penguin2D
 		std::filesystem::path mainPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("log.txt")));
 
 		std::filesystem::path tracePath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("traceLog.txt")));
-		std::filesystem::path infoPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("infolog.txt")));
+		std::filesystem::path infoPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("infoLog.txt")));
 		std::filesystem::path warnPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("warnLog.txt")));
 		std::filesystem::path errorPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("errorLog.txt")));
 		std::filesystem::path criticalPath(std::string(std::string("log/") + logName + std::string("/") + std::string("criticalLog.txt")));
@@ -47,10 +47,6 @@ namespace penguin2D
 		spdlog::sink_ptr criticalLogSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(criticalPath.u8string());
 
 		//create spdlog loggers
-		m_log_handle = std::make_shared<spdlog::logger>(logName, mainLogSink);
-		m_log_handle->set_level(spdlog::level::trace);
-
-
 		std::vector<spdlog::sink_ptr> loggerSinks;
 		loggerSinks.emplace_back(mainLogSink);
 		loggerSinks.emplace_back(traceLogSink);
