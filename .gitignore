@@ -1,3 +1,6 @@
+#discard from uploading doxygen doccumentation as it can be generated on will
+docs/doxygen
+
 #throw out .vs it absolutely serves no purpose
 **/.vs/
 
