@@ -32,7 +32,7 @@ project "logTest" -- a good enough project name for the project which literally 
 
     filter "configurations:debug"
         defines{
-          "P_TEST_DEBUG"
+          "PTest_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -40,7 +40,7 @@ project "logTest" -- a good enough project name for the project which literally 
         
     filter "configurations:release"
         defines{
-            "P_TEST_SHIP"
+            "PTest_DEBUG"
         }
         runtime "Release"
         optimize "on"

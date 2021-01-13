@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "spdlog/sinks/basic_file_sink.h"
+
 namespace penguin2D
 {
 	static std::once_flag logInitializerFlag;
@@ -8,58 +10,136 @@ namespace penguin2D
 		spdlog::set_pattern("%^[%T] %n : %v%$");
 	}
 
-	consoleLog::consoleLog()
+	consoleLog::consoleLog(const std::string& logName)
 	{
 		//call the initialize function of the library only once at the start of the program.. 
 		std::call_once(logInitializerFlag, []() {
 			initializeLog();
 			});
 
-		m_handle = spdlog::stdout_color_mt("default");
-		m_handle->set_level(spdlog::level::trace);
+		m_log_handle = spdlog::stdout_color_mt(logName);
+		m_log_handle->set_level(spdlog::level::trace);
 	}
 
-	fileLog::fileLog()
+	fileLog::fileLog(const std::string& logName)
 	{
 		//call the initialize function of the library only once at the start of the program..
 		std::call_once(logInitializerFlag, []() {
 			initializeLog();
 			});
 
-		m_handle = spdlog::basic_logger_mt("defaultFileLogger", "log/log.txt");
-		m_handle->set_level(spdlog::level::trace);
+		//set filepaths
+		std::filesystem::path mainPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("log.txt")));
+
+		std::filesystem::path tracePath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("traceLog.txt")));
+		std::filesystem::path infoPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("infolog.txt")));
+		std::filesystem::path warnPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("warnLog.txt")));
+		std::filesystem::path errorPath	  (std::string(std::string("log/") + logName + std::string("/") + std::string("errorLog.txt")));
+		std::filesystem::path criticalPath(std::string(std::string("log/") + logName + std::string("/") + std::string("criticalLog.txt")));
+
+		//creating sinks
+		spdlog::sink_ptr mainLogSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(mainPath.u8string());
+
+		spdlog::sink_ptr traceLogSink	 = std::make_shared<spdlog::sinks::basic_file_sink_mt>(tracePath.u8string());
+		spdlog::sink_ptr infoLogSink	 = std::make_shared<spdlog::sinks::basic_file_sink_mt>(infoPath.u8string());
+		spdlog::sink_ptr warnLogSink	 = std::make_shared<spdlog::sinks::basic_file_sink_mt>(warnPath.u8string());
+		spdlog::sink_ptr errorLogSink    = std::make_shared<spdlog::sinks::basic_file_sink_mt>(errorPath.u8string());
+		spdlog::sink_ptr criticalLogSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(criticalPath.u8string());
+
+		//create spdlog loggers
+		m_log_handle = std::make_shared<spdlog::logger>(logName, mainLogSink);
+		m_log_handle->set_level(spdlog::level::trace);
 
 
-		m_trace_handle = spdlog::basic_logger_mt("defaultTraceLogger",	"log/logTrace.txt");
-		m_trace_handle->set_level(spdlog::level::trace);
-		
-		m_info_handle = spdlog::basic_logger_mt("defaultInfoLogger",		"log/logInfo.txt");
-		m_info_handle->set_level(spdlog::level::info);
-		
-		m_warn_handle = spdlog::basic_logger_mt("defaultWarnLogger",		"log/logWarn.txt");
-		m_warn_handle->set_level(spdlog::level::warn);
-		
-		m_error_handle = spdlog::basic_logger_mt("defaultErrorLogger",	"log/logError.txt");
-		m_error_handle->set_level(spdlog::level::err);
-		
-		m_critical_handle = spdlog::basic_logger_mt("defaultCriticalLogger", "log/logCritical.txt");
-		m_critical_handle->set_level(spdlog::level::critical);
+		std::vector<spdlog::sink_ptr> loggerSinks;
+		loggerSinks.emplace_back(mainLogSink);
+		loggerSinks.emplace_back(traceLogSink);
+		m_log_trace_handle = std::make_shared<spdlog::logger>(logName + std::string("TraceLogger"),loggerSinks.begin(),loggerSinks.end());
+		m_log_trace_handle->set_level(spdlog::level::trace);
+		loggerSinks.clear();
 
+		loggerSinks.emplace_back(mainLogSink);
+		loggerSinks.emplace_back(infoLogSink);
+		m_log_info_handle = std::make_shared<spdlog::logger>(logName + std::string("InfoLogger"), loggerSinks.begin(),loggerSinks.end());
+		m_log_info_handle->set_level(spdlog::level::info);
+		loggerSinks.clear();
 
-		m_unclassified_handle = spdlog::basic_logger_mt("defaultUnspecifiedLogger", "log/logUnspecified.txt");
-		m_unclassified_handle->set_level(spdlog::level::err);
+		loggerSinks.emplace_back(mainLogSink);
+		loggerSinks.emplace_back(warnLogSink);
+		m_log_warn_handle = std::make_shared<spdlog::logger>(logName + std::string("WarnLogger"), loggerSinks.begin(), loggerSinks.end());
+		m_log_warn_handle->set_level(spdlog::level::warn);
+		loggerSinks.clear();
+
+		loggerSinks.emplace_back(mainLogSink);
+		loggerSinks.emplace_back(errorLogSink);
+		m_log_error_handle = std::make_shared<spdlog::logger>(logName + std::string("ErrorLogger"), loggerSinks.begin(),loggerSinks.end());
+		m_log_error_handle->set_level(spdlog::level::err);
+		loggerSinks.clear();
+
+		loggerSinks.emplace_back(mainLogSink);
+		loggerSinks.emplace_back(criticalLogSink);
+		m_log_critical_handle = std::make_shared<spdlog::logger>(logName + std::string("CriticalLogger"), loggerSinks.begin(),loggerSinks.end());
+		m_log_critical_handle->set_level(spdlog::level::trace);
+		loggerSinks.clear();
 	}
 	
 
-	consoleLog log::getConsoleLogger()
+#pragma region getConsoleLogger
+	consoleLog log::getConsoleLoggerEngine()
 	{
-		static consoleLog cLog;
-		return cLog;
+		static consoleLog logObject("engine");
+		return logObject;
 	}
 
-	fileLog log::getFileLogger()
+	consoleLog log::getConsoleLoggerEditor()
 	{
-		static fileLog fLog;
-		return fLog;
+		static consoleLog logObject("editor");
+		return logObject;
 	}
+
+	consoleLog log::getConsoleLoggerExecutable()
+	{
+		static consoleLog logObject("executable");
+		return logObject;
+	}
+
+	consoleLog log::getConsoleLoggerTest()
+	{
+		static consoleLog logObject("test");
+		return logObject;
+	}
+
+	consoleLog log::getConsoleLoggerExample()
+	{
+		static consoleLog logObject("example");
+		return logObject;
+	}
+#pragma endregion
+#pragma region getFileLogger
+	fileLog log::getFileLoggerEngine()
+	{
+		static fileLog logObject("engine");
+		return logObject;
+	}
+	fileLog log::getFileLoggerEditor()
+	{
+		static fileLog logObject("editor");
+		return logObject;
+	}
+	fileLog log::getFileLoggerExecutable()
+	{
+		static fileLog logObject("executable");
+		return logObject;
+	}
+	fileLog log::getFileLoggerTest()
+	{
+		static fileLog logObject("test");
+		return logObject;
+	}
+	fileLog log::getFileLoggerExample()
+	{
+		static fileLog logObject("example");
+		return logObject;
+	}
+#pragma endregion
 }

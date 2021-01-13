@@ -33,7 +33,7 @@ project "usingLogSystem" -- a good enough project name for the project which lit
 
     filter "configurations:debug"
         defines{
-          "P_EX_DEBUG"
+          "PExample_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -41,7 +41,7 @@ project "usingLogSystem" -- a good enough project name for the project which lit
         
     filter "configurations:release"
         defines{
-            "P_EX_SHIP"
+            "PExample_Ship"
         }
         runtime "Release"
         optimize "on"
