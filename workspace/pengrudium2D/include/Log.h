@@ -42,12 +42,10 @@ namespace penguin2D
 	{
 	public:
 		fileLog();
-		operator std::shared_ptr<spdlog::logger>() { return m_handle; };
-		std::shared_ptr<spdlog::logger> get() { return m_handle; };
 
 	public:
 		template<typename... args>
-		static void write(fileLog logObj,int level,args... logToWrite)
+		static void write(fileLog logObj,const int level,args... logToWrite)
 		{
 			switch (level)
 			{

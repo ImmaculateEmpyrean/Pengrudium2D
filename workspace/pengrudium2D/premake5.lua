@@ -29,7 +29,7 @@ project "pengrudium2D" -- a good enough project name for the project which liter
 
     filter "configurations:debug"
         defines{
-          "PE_DEBUG"
+          "PEngine_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -37,7 +37,7 @@ project "pengrudium2D" -- a good enough project name for the project which liter
         
     filter "configurations:release"
         defines{
-            "PE_SHIP"
+            "PEngine_SHIP"
         }
         runtime "Release"
         optimize "on"
@@ -45,12 +45,12 @@ project "pengrudium2D" -- a good enough project name for the project which liter
     
     filter "platforms:Windows"
         defines{
-            "PE_BUILDING_FOR_WINDOWS"
+            "PEngine_BUILDING_FOR_WINDOWS"
         }
         
     filter "system:windows"
         systemversion "latest"
 
         defines{
-            "PE_BUILDING_ON_WINDOWS"
+            "PEngine_BUILDING_ON_WINDOWS"
         }

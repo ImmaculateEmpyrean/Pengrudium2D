@@ -33,7 +33,7 @@ project "sandbox" -- a good enough project name for the project which literally 
 
     filter "configurations:debug"
         defines{
-          "PE_DEBUG"
+          "PExecutable_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -41,7 +41,7 @@ project "sandbox" -- a good enough project name for the project which literally 
         
     filter "configurations:release"
         defines{
-            "PE_SHIP"
+            "PExecutable_SHIP"
         }
         runtime "Release"
         optimize "on"
@@ -49,12 +49,12 @@ project "sandbox" -- a good enough project name for the project which literally 
     
     filter "platforms:Windows"
         defines{
-            "PE_BUILDING_FOR_WINDOWS"
+            "PExecutable_BUILDING_FOR_WINDOWS"
         }
         
     filter "system:windows"
         systemversion "latest"
 
         defines{
-            "PE_BUILDING_ON_WINDOWS"
+            "PExecutable_BUILDING_ON_WINDOWS"
         }

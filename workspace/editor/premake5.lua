@@ -34,7 +34,7 @@ project "editor" -- a good enough project name for the project which literally i
 
     filter "configurations:debug"
         defines{
-          "PE_DEBUG"
+          "PEditor_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -42,7 +42,7 @@ project "editor" -- a good enough project name for the project which literally i
         
     filter "configurations:release"
         defines{
-            "PE_SHIP"
+            "PEditor_SHIP"
         }
         runtime "Release"
         optimize "on"
@@ -50,12 +50,12 @@ project "editor" -- a good enough project name for the project which literally i
     
     filter "platforms:Windows"
         defines{
-            "PE_BUILDING_FOR_WINDOWS"
+            "PEditor_BUILDING_FOR_WINDOWS"
         }
         
     filter "system:windows"
         systemversion "latest"
 
         defines{
-            "PE_BUILDING_ON_WINDOWS"
+            "PEditor_BUILDING_ON_WINDOWS"
         }

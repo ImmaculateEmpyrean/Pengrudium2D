@@ -33,8 +33,7 @@ project "usingLogSystem" -- a good enough project name for the project which lit
 
     filter "configurations:debug"
         defines{
-          "PE_DEBUG",
-          "EX_DEBUG"
+          "P_EX_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -42,8 +41,7 @@ project "usingLogSystem" -- a good enough project name for the project which lit
         
     filter "configurations:release"
         defines{
-            "PE_SHIP",
-            "EX_SHIP"
+            "P_EX_SHIP"
         }
         runtime "Release"
         optimize "on"
@@ -51,12 +49,12 @@ project "usingLogSystem" -- a good enough project name for the project which lit
     
     filter "platforms:Windows"
         defines{
-            "PE_BUILDING_FOR_WINDOWS"
+            "P_EX_BUILDING_FOR_WINDOWS"
         }
         
     filter "system:windows"
         systemversion "latest"
 
         defines{
-            "PE_BUILDING_ON_WINDOWS"
+            "P_EX_BUILDING_ON_WINDOWS"
         }

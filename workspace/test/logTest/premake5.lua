@@ -32,8 +32,7 @@ project "logTest" -- a good enough project name for the project which literally 
 
     filter "configurations:debug"
         defines{
-          "PE_DEBUG",
-          "TEST_DEBUG"
+          "P_TEST_DEBUG"
         }
         runtime "Debug"
         symbols "on"
@@ -41,8 +40,7 @@ project "logTest" -- a good enough project name for the project which literally 
         
     filter "configurations:release"
         defines{
-            "PE_SHIP",
-            "TEST_SHIP"
+            "P_TEST_SHIP"
         }
         runtime "Release"
         optimize "on"
@@ -50,12 +48,12 @@ project "logTest" -- a good enough project name for the project which literally 
     
     filter "platforms:Windows"
         defines{
-            "PE_BUILDING_FOR_WINDOWS"
+            "P_TEST_BUILDING_FOR_WINDOWS"
         }
         
     filter "system:windows"
         systemversion "latest"
 
         defines{
-            "PE_BUILDING_ON_WINDOWS"
+            "P_TEST_BUILDING_ON_WINDOWS"
         }
