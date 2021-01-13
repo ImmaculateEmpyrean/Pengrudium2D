@@ -37,8 +37,3 @@
 #include<type_traits>
 
 #include<exception>
-
-//vendor dependencies..
-
-//dependencies..
-#include "Log.h"

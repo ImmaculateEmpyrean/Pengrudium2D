@@ -40,7 +40,7 @@ project "logTest" -- a good enough project name for the project which literally 
         
     filter "configurations:release"
         defines{
-            "PTest_DEBUG"
+            "PTest_SHIP"
         }
         runtime "Release"
         optimize "on"

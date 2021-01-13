@@ -56,11 +56,11 @@ namespace penguin2D
 	#define logConsoleCritical(...)	penguin2D::log::getConsoleLoggerEngine().m_log_handle->critical (__VA_ARGS__);
 
 
-	#define logFileTrace(...)		penguin2D::log::getFileLoggerEngine().m_log_trace_handle()->trace(__VA_ARGS__);
-	#define logFileInfo(...)		penguin2D::log::getFileLoggerEngine().m_log_info_handle()->trace(__VA_ARGS__);
-	#define logFileWarn(...)		penguin2D::log::getFileLoggerEngine().m_log_warn_handle()->trace(__VA_ARGS__);
-	#define logFileError(...)		penguin2D::log::getFileLoggerEngine().m_log_error_handle()->trace(__VA_ARGS__);
-	#define logFileCritical(...)	penguin2D::log::getFileLoggerEngine().m_log_critical_handle()->trace(__VA_ARGS__);
+	#define logFileTrace(...)		penguin2D::log::getFileLoggerEngine().m_log_trace_handle->trace(__VA_ARGS__);
+	#define logFileInfo(...)		penguin2D::log::getFileLoggerEngine().m_log_info_handle->info(__VA_ARGS__);
+	#define logFileWarn(...)		penguin2D::log::getFileLoggerEngine().m_log_warn_handle->warn(__VA_ARGS__);
+	#define logFileError(...)		penguin2D::log::getFileLoggerEngine().m_log_error_handle->error(__VA_ARGS__);
+	#define logFileCritical(...)	penguin2D::log::getFileLoggerEngine().m_log_critical_handle->critical(__VA_ARGS__);
 
 
 	#define logTrace(...)			logConsoleTrace(__VA_ARGS__);\
@@ -87,11 +87,11 @@ namespace penguin2D
 #define logConsoleCritical(...)	penguin2D::log::getConsoleLoggerEditor().m_log_handle->critical (__VA_ARGS__);
 
 
-#define logFileTrace(...)		penguin2D::log::getFileLoggerEditor().m_log_trace_handle()->trace(__VA_ARGS__);
-#define logFileInfo(...)		penguin2D::log::getFileLoggerEditor().m_log_info_handle()->trace(__VA_ARGS__);
-#define logFileWarn(...)		penguin2D::log::getFileLoggerEditor().m_log_warn_handle()->trace(__VA_ARGS__);
-#define logFileError(...)		penguin2D::log::getFileLoggerEditor().m_log_error_handle()->trace(__VA_ARGS__);
-#define logFileCritical(...)	penguin2D::log::getFileLoggerEditor().m_log_critical_handle()->trace(__VA_ARGS__);
+#define logFileTrace(...)		penguin2D::log::getFileLoggerEditor().m_log_trace_handle->trace(__VA_ARGS__);
+#define logFileInfo(...)		penguin2D::log::getFileLoggerEditor().m_log_info_handle->info(__VA_ARGS__);
+#define logFileWarn(...)		penguin2D::log::getFileLoggerEditor().m_log_warn_handle->warn(__VA_ARGS__);
+#define logFileError(...)		penguin2D::log::getFileLoggerEditor().m_log_error_handle->error(__VA_ARGS__);
+#define logFileCritical(...)	penguin2D::log::getFileLoggerEditor().m_log_critical_handle->critical(__VA_ARGS__);
 
 
 #define logTrace(...)			logConsoleTrace(__VA_ARGS__);\
@@ -118,11 +118,11 @@ namespace penguin2D
 #define logConsoleCritical(...)	penguin2D::log::getConsoleLoggerExecutable().m_log_handle->critical (__VA_ARGS__);
 
 
-#define logFileTrace(...)		penguin2D::log::getFileLoggerExecutable().m_log_trace_handle()->trace(__VA_ARGS__);
-#define logFileInfo(...)		penguin2D::log::getFileLoggerExecutable().m_log_info_handle()->trace(__VA_ARGS__);
-#define logFileWarn(...)		penguin2D::log::getFileLoggerExecutable().m_log_warn_handle()->trace(__VA_ARGS__);
-#define logFileError(...)		penguin2D::log::getFileLoggerExecutable().m_log_error_handle()->trace(__VA_ARGS__);
-#define logFileCritical(...)	penguin2D::log::getFileLoggerExecutable().m_log_critical_handle()->trace(__VA_ARGS__);
+#define logFileTrace(...)		penguin2D::log::getFileLoggerExecutable().m_log_trace_handle->trace(__VA_ARGS__);
+#define logFileInfo(...)		penguin2D::log::getFileLoggerExecutable().m_log_info_handle->info(__VA_ARGS__);
+#define logFileWarn(...)		penguin2D::log::getFileLoggerExecutable().m_log_warn_handle->warn(__VA_ARGS__);
+#define logFileError(...)		penguin2D::log::getFileLoggerExecutable().m_log_error_handle->error(__VA_ARGS__);
+#define logFileCritical(...)	penguin2D::log::getFileLoggerExecutable().m_log_critical_handle->critical(__VA_ARGS__);
 
 
 #define logTrace(...)			logConsoleTrace(__VA_ARGS__);\
@@ -149,11 +149,11 @@ namespace penguin2D
 #define logConsoleCritical(...)	penguin2D::log::getConsoleLoggerTest().m_log_handle->critical	(__VA_ARGS__);
 
 
-#define logFileTrace(...)		penguin2D::log::getFileLoggerTest().m_log_trace_handle()->trace(__VA_ARGS__);
-#define logFileInfo(...)		penguin2D::log::getFileLoggerTest().m_log_info_handle()->trace(__VA_ARGS__);
-#define logFileWarn(...)		penguin2D::log::getFileLoggerTest().m_log_warn_handle()->trace(__VA_ARGS__);
-#define logFileError(...)		penguin2D::log::getFileLoggerTest().m_log_error_handle()->trace(__VA_ARGS__);
-#define logFileCritical(...)	penguin2D::log::getFileLoggerTest().m_log_critical_handle()->trace(__VA_ARGS__);
+#define logFileTrace(...)		penguin2D::log::getFileLoggerTest().m_log_trace_handle->trace(__VA_ARGS__);
+#define logFileInfo(...)		penguin2D::log::getFileLoggerTest().m_log_info_handle->info(__VA_ARGS__);
+#define logFileWarn(...)		penguin2D::log::getFileLoggerTest().m_log_warn_handle->warn(__VA_ARGS__);
+#define logFileError(...)		penguin2D::log::getFileLoggerTest().m_log_error_handle->error(__VA_ARGS__);
+#define logFileCritical(...)	penguin2D::log::getFileLoggerTest().m_log_critical_handle->critical(__VA_ARGS__);
 
 
 #define logTrace(...)			logConsoleTrace(__VA_ARGS__);\
@@ -179,11 +179,11 @@ namespace penguin2D
 #define logConsoleCritical(...)	penguin2D::log::getConsoleLoggerExample().m_log_handle->critical (__VA_ARGS__);
 
 
-#define logFileTrace(...)		penguin2D::log::getFileLoggerExample().m_log_trace_handle()->trace(__VA_ARGS__);
-#define logFileInfo(...)		penguin2D::log::getFileLoggerExample().m_log_info_handle()->trace(__VA_ARGS__);
-#define logFileWarn(...)		penguin2D::log::getFileLoggerExample().m_log_warn_handle()->trace(__VA_ARGS__);
-#define logFileError(...)		penguin2D::log::getFileLoggerExample().m_log_error_handle()->trace(__VA_ARGS__);
-#define logFileCritical(...)	penguin2D::log::getFileLoggerExample().m_log_critical_handle()->trace(__VA_ARGS__);
+#define logFileTrace(...)		penguin2D::log::getFileLoggerExample().m_log_trace_handle->trace(__VA_ARGS__);
+#define logFileInfo(...)		penguin2D::log::getFileLoggerExample().m_log_info_handle->info(__VA_ARGS__);
+#define logFileWarn(...)		penguin2D::log::getFileLoggerExample().m_log_warn_handle->warn(__VA_ARGS__);
+#define logFileError(...)		penguin2D::log::getFileLoggerExample().m_log_error_handle->error(__VA_ARGS__);
+#define logFileCritical(...)	penguin2D::log::getFileLoggerExample().m_log_critical_handle->critical(__VA_ARGS__);
 
 
 #define logTrace(...)			logConsoleTrace(__VA_ARGS__);\
