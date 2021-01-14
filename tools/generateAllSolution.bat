@@ -1,4 +1,3 @@
-call generateDoccumentation.bat
 call generateDevelopmentEnvironment.bat
 call generateTest.bat
 call generateExample.bat
