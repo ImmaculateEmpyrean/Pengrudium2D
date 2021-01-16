@@ -23,6 +23,7 @@ project "usingLogSystem" -- a good enough project name for the project which lit
     includedirs {
         "%{IncludeDir.pengrudium2D}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.entt}",
         "src",
         "src/PCH"
     }

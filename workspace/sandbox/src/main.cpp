@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-
+#include "entt.h"
 
 namespace penguin2D
 {
@@ -13,4 +13,12 @@ int main()
 	std::cout << "hello from sandbox.." << std::endl;
 
 	logConsoleInfo("Haha");
+	entt::scheduler<uint32_t> mainScheduler;
+
+	mainScheduler.attach([](auto...) {
+		logConsoleInfo("this is a task attached to entt scheduler");
+		});
+
+	while (true)
+		mainScheduler.update(32);
 }

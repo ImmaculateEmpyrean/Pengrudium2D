@@ -24,6 +24,7 @@ project "pengrudium2D" -- a good enough project name for the project which liter
     includedirs {
         "%{IncludeDir.pengrudium2D}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.entt}",
         "src/PCH"
     }
 

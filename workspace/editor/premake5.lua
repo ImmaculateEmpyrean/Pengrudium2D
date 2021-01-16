@@ -23,6 +23,7 @@ project "editor" -- a good enough project name for the project which literally i
     includedirs {
         "%{IncludeDir.pengrudium2D}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.entt}",
         "src",
         "src/PCH"
     }

@@ -23,6 +23,7 @@ project "sandbox" -- a good enough project name for the project which literally 
     includedirs {
         "%{IncludeDir.pengrudium2D}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.entt}",
         "src",
         "src/PCH"
     }
