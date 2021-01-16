@@ -20,9 +20,20 @@
   there is no need to explicitly link any other dependency to this lib file. all dependencies are compiled and placed into the engine's lib file automatically when the engine is being compiled. ``please see the section on the symbols expected in your executable if you are using some other executable and not sandbox.``
   * the sandbox project is an executable already setup to allow for shipping of the game. it should serve as a reference for your own executable and you donot want to use this as your executable without careful consideration. ``even when a new project is being started which solely depends on this engine, there is still atleast one good reason to NOT use this project as new updates to the engine may cause merge conflicts because someone somewhere tweaked the sandbox project a little.``
 
-* The workspace workspace/test/pengrudium2DTests.sln is a solution which contains all the project files associated with testing some module of the engine. any new tests must go in there. ``this solution can also serve as examples but the engine is way too barebones to say anything with certainity.`` 
+* The workspace workspace/test/pengrudium2DTests.sln contains all the project associated with testing some module of the engine. ``this solution can also serve as examples but the engine is way too barebones to say anything with certainity.``
+
+* The workspace workspace/example/pengrudium2DExamples contains all the projects associated with providing the user some working examples on the best practices of coding with the engine.
 
 @section structure of the project
 ## Compile The Engine And Get It Running 
-    -> the 
-    
+* the engine is compiled as a static library and can be included in any executable of your choosing.
+* compile the engine using the solution devPengrudium2D the engine incorporates in it all the necessary dependencies in its one lib file.
+* the header files are a different matter entirely.
+  * the engines header files can be grabbed from the include directory located in the path workspace\pengrudium2D\include
+  * the spdlog header files can be grabbed from the path workspace\vendor\spdlog\spdlog-1.8.2\include
+  * ``the most upto date list of what header files to be grabbed is always stored in the premake5.lua file available in the path workspace\pengrudium2D\premake5.lua``
+    * it is fairly easy to locate which are the header files required - simply take a look at the includedirs entry in the file. then search for the keys present there in the main lua file located in the path workspace/premake5.lua.      
+
+@section Symbols expected to be defined in the executable by the engine 
+
+## Symbols expected to be defined in the executable by the engine
