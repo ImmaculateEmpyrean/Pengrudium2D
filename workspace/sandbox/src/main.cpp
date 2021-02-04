@@ -1,7 +1,5 @@
 #include "stdafx.h"
-
 #include "cacheLineSize.h"
-
 
 int main()
 {
