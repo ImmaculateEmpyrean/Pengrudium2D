@@ -4,13 +4,24 @@
 #include "core/symbols.h"
 #include "instrumentation/instrumentation.h"
 
+void printingSubset1()
+{
+	PROFILER_TIME_FUNCTION
+	_sleep(25000);
+}
+void printingSubset2()
+{
+	PROFILER_TIME_FUNCTION
+	_sleep(25000);
+}
 void printingFunction()
 {
-	PROFILER_TIME_FUNCTION();
-
-	for (long i = 0; i < 1000; i++)
-		std::cout << i << std::endl;
+	PROFILER_TIME_FUNCTION
+	printingSubset1();
+	printingSubset2();
+	_sleep(50000);
 }
+
 
 int main()
 {
@@ -18,6 +29,9 @@ int main()
 	logConsoleInfo("cache_line_size of the machine : {}",penguin2D::getCacheLineSize());
 
 	PROFILER_NEWSESSION("test", "test.json");
+	std::thread thr(printingFunction);
+	_sleep(10000);
 	printingFunction();
+	thr.join();
 	PROFILER_ENDSESSION();
 }
