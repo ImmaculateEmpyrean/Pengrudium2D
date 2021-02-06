@@ -24,6 +24,7 @@ project "sandbox" -- a good enough project name for the project which literally 
         "%{IncludeDir.pengrudium2D}",
         "%{IncludeDir.spdlog}",
         "%{IncludeDir.entt}",
+        "%{IncludeDir.nlohmannJson}",
         "src",
         "src/PCH"
     }

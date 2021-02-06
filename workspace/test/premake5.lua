@@ -20,9 +20,10 @@ workspace "pengrudium2DTests"
 
     --a map to store all include directory paths which we wish to make the compiler lookat.
     IncludeDir = {}
-    IncludeDir["pengrudium2D"] = "%{wks.location}/../pengrudium2D/include" -- use this to access the header files associated to pengrudium2D project(the meat of this initiative). more easily.
-    IncludeDir["spdlog"] = "%{wks.location}/../vendor/spdlog/spdlog-1.8.2/include" -- use this to access the header files associated to pengrudium2D project(the meat of this initiative). more easily.
-    IncludeDir["entt"] = "%{wks.location}/../vendor/entt" -- use this to access the header files associated to pengrudium2D project(the meat of this initiative). more easily.
+    IncludeDir["pengrudium2D"]  = "%{wks.location}/../pengrudium2D/include" -- use this to access the header files associated to pengrudium2D project(the meat of this initiative). more easily.
+    IncludeDir["spdlog"]        = "%{wks.location}/../vendor/spdlog/spdlog-1.8.2/include" -- use this to access the header files associated to pengrudium2D project(the meat of this initiative). more easily.
+    IncludeDir["entt"]          =  "%{wks.location}/../vendor/entt" -- use this to access the header files associated to pengrudium2D project(the meat of this initiative). more easily.
+     IncludeDir["nlohamnnJson"] = "%{wks.location}/../vendor/nlohamnnJson"
 
     --the grouping refers to all the projects generated using third party source code. 
     group "vendor"
