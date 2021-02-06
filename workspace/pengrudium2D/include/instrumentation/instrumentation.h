@@ -4,4 +4,4 @@
 #include "components/instrumentationTimer.h"
 #include "components/profilerResult.h"
 
-//the macros related to instrumentation are defined in the core macro settings file.. please have a look there.
+//the macros related to instrumentation are defined in the file ../core/symbols.h from the current path.. please have a look there
