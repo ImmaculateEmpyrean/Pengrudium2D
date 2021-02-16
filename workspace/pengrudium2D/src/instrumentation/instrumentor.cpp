@@ -20,9 +20,6 @@ void instrumentor::endSession()
     else
         logConsoleError("trying to end session when there is no session running.. line : {}, func : {} , file : {}",__LINE__, __FUNCSIG__, __FILE__);
 }
-
-std::mutex testMutex;
-
 void instrumentor::initializeFile()
 {
     //initialize file is called only when new session is created.. there is no need to check if the stack is empty..
@@ -41,13 +38,11 @@ void instrumentor::writeProfile(const profileResult& result)
     profilerEvent["pid"] = 0;
     profilerEvent["tid"] = result.m_threadID;
     profilerEvent["ts"] = result.m_startPoint;
-    
-    testMutex.lock();
+   
     if (sessionStack.size() > 0)
         sessionStack.top().m_jsonFile["traceEvents"].push_back(profilerEvent);
     else
         logConsoleError("error writing profile as no session found..\nfunction : {}\nline : {} of file : {}",__FUNCSIG__,__LINE__,__FILE__);
-    testMutex.unlock();
 }
 void instrumentor::flushToFile()
 {

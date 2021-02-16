@@ -7,19 +7,19 @@
 void printingSubset1()
 {
 	PROFILER_TIME_FUNCTION
-	_sleep(25000);
+	_sleep(2500);
 }
 void printingSubset2()
 {
 	PROFILER_TIME_FUNCTION
-	_sleep(25000);
+	_sleep(2500);
 }
 void printingFunction()
 {
 	PROFILER_TIME_FUNCTION
 	printingSubset1();
 	printingSubset2();
-	_sleep(50000);
+	_sleep(5000);
 }
 
 
