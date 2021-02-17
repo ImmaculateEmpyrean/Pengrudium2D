@@ -4,34 +4,17 @@
 #include "core/symbols.h"
 #include "instrumentation/instrumentation.h"
 
-void printingSubset1()
-{
-	PROFILER_TIME_FUNCTION
-	_sleep(2500);
-}
-void printingSubset2()
-{
-	PROFILER_TIME_FUNCTION
-	_sleep(2500);
-}
-void printingFunction()
-{
-	PROFILER_TIME_FUNCTION
-	printingSubset1();
-	printingSubset2();
-	_sleep(5000);
-}
+#include "entityComponentSystem/entity.h"
 
+#include "entityComponentSystem/component/nameComponent.h"
 
 int main()
 {
-	logConsoleInfo("sandbox initiated..");
-	logConsoleInfo("cache_line_size of the machine : {}",penguin2D::getCacheLineSize());
+	std::shared_ptr<penguin2D::scene> scenePtr = std::make_shared<penguin2D::scene>();
 
-	PROFILER_NEWSESSION("test", "test.json");
-	std::thread thr(printingFunction);
-	_sleep(10000);
-	printingFunction();
-	thr.join();
-	PROFILER_ENDSESSION();
+	penguin2D::entity ent(scenePtr);
+	ent.addComponent<penguin2D::nameComponent>(std::string("hanna"));
+
+	auto name = ent.getComponent<penguin2D::nameComponent>();
+	std::cout << name.m_name;
 }
