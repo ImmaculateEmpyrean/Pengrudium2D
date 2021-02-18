@@ -7,6 +7,7 @@
 #include "entityComponentSystem/entity.h"
 
 #include "entityComponentSystem/component/nameComponent.h"
+#include "entityComponentSystem/component/transformComponent.h"
 
 #include "entt.h"
 
@@ -18,14 +19,14 @@ int main()
 
 	penguin2D::entity ent(scenePtr);
 	std::cout << std::boolalpha << ent.componentExists<nameComponent>() << std::endl;
-	ent.addComponent<penguin2D::nameComponent>(std::string("hanna"));
+	ent.addComponent<transformComponent>(glm::mat4(15.0f));
 
-	auto name = ent.getComponent<penguin2D::nameComponent>();
-	name.m_name = "han";
+	auto transform = ent.getComponent<transformComponent>();
+	transform.m_transform = glm::mat4(2.0f);
 	
-	ent.updateComponent<nameComponent>(name);
+	ent.updateComponent<transformComponent>(transform);
 
-	auto name2 = ent.getComponent<nameComponent>();
-	std::cout << std::boolalpha << ent.componentExists<nameComponent>() << std::endl;
-	std::cout << name2.m_name;
+	auto trans = ent.getComponent<transformComponent>();
+	std::cout << std::boolalpha << ent.componentExists<transformComponent>() << std::endl;
+	std::cout << trans.m_transform[0][0] << std::endl;
 }

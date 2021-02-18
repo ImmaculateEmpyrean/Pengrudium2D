@@ -39,6 +39,7 @@
 #include<exception>
 
 //vendor dependencies..
+#include <glm/glm.hpp>
 
 //dependencies..
 #include "Log.h"
