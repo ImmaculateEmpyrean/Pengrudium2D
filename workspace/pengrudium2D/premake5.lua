@@ -26,6 +26,7 @@ project "pengrudium2D" -- a good enough project name for the project which liter
         "%{IncludeDir.spdlog}",
         "%{IncludeDir.entt}",
         "%{IncludeDir.nlohmannJson}",
+        "%{IncludeDir.glm}",
         "src/PCH"
     }
 

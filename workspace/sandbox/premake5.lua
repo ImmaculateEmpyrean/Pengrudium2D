@@ -25,6 +25,7 @@ project "sandbox" -- a good enough project name for the project which literally 
         "%{IncludeDir.spdlog}",
         "%{IncludeDir.entt}",
         "%{IncludeDir.nlohmannJson}",
+        "%{IncludeDir.glm}",
         "src",
         "src/PCH"
     }

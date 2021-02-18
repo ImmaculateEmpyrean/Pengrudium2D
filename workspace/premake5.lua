@@ -22,8 +22,10 @@ workspace "devPengrudium2D"
     IncludeDir = {}
     IncludeDir["pengrudium2D"]  = "%{wks.location}/pengrudium2D/include" -- use this to access the header files associated to pengrudium2D project(the meat of this initiative). more easily.
     IncludeDir["spdlog"]        = "%{wks.location}/vendor/spdlog/spdlog-1.8.2/include"
-    IncludeDir["entt"]          = "%{wks.location}/vendor/entt"
-    IncludeDir["nlohmannJson"]  = "%{wks.location}/vendor/nlohmannJson"
+    IncludeDir["entt"]          = "%{wks.location}/vendor/entt/entt-3.6.0/entt"
+    IncludeDir["nlohmannJson"]  = "%{wks.location}/vendor/nlohmannJson/nlohmann-3.9.1"
+    IncludeDir["glm"]			= "%{wks.location}/vendor/glm/glm-0.9.9.8"
+    
     --the grouping refers to all the projects generated using third party source code. 
     group "vendor"
     group ""
