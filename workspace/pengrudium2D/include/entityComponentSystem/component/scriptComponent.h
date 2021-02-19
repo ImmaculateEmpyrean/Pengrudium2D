@@ -1,6 +1,9 @@
 #pragma once
+#include<optional>
+
 #include "entityComponentSystem/scene.h"
 #include "entityComponentSystem/entity.h"
+
 
 namespace penguin2D
 {
@@ -21,10 +24,17 @@ namespace penguin2D
 		template<typename T>
 		T& getComponent()
 		{	return m_entity->getComponent<T>();	}
+		template<typename T>
+		std::optional<T> tryGetComponent()
+		{	return m_entity->tryGetComponent<T>();	}
 
 		template<typename T,typename... ARGS>
 		void addComponent()	
 		{	m_entity->setComponent<T>(std::forward(ARGS)...);	}
+
+		template<typename T>
+		void deleteComponent()
+		{	m_entity->deleteComponent<T>();	}
 
 	private:
 		std::shared_ptr<entity> m_entity;

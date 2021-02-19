@@ -20,7 +20,7 @@ public:
 	virtual void onUpdate()
 	{
 		logConsoleInfo("update called");
-		logConsoleInfo("name of this entity is : {}", getComponent<nameComponent>().m_name);
+		logConsoleInfo("name of this entity is : {}", tryGetComponent<nameComponent>().value_or(nameComponent("test")).m_name);
 	}
 };
 

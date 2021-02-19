@@ -42,6 +42,16 @@ namespace penguin2D
 			return m_sceneRef->m_sceneRegistry.get<T>(m_id);
 		}
 		template<typename T>
+		std::optional<T> tryGetComponent()
+		{
+			auto component = m_sceneRef->m_sceneRegistry.try_get<T>(m_id);
+			if (component)
+				return (*component);
+			else
+				return { };
+		}
+
+		template<typename T>
 		void deleteComponent()
 		{
 			m_sceneRef->m_sceneRegistry.remove<T>(m_id);
