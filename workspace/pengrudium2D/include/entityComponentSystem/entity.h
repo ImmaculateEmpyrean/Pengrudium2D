@@ -15,7 +15,7 @@ namespace penguin2D
 	class entity
 	{
 	public:
-		entity(uint32_t entity,std::shared_ptr<scene> scenePtr);
+		entity(entt::entity entity,std::shared_ptr<scene> scenePtr);
 		entity(std::shared_ptr<scene> scenePtr);
 
 	public:
@@ -24,6 +24,7 @@ namespace penguin2D
 		{
 			m_sceneRef->m_sceneRegistry.emplace<T>(m_id, std::forward<ARGS>(args)...);
 		}
+
 		template<typename T>
 		void updateComponent(T& obj)
 		{
@@ -36,7 +37,7 @@ namespace penguin2D
 		}
 
 		template<typename T>
-		T getComponent()
+		T& getComponent()
 		{
 			return m_sceneRef->m_sceneRegistry.get<T>(m_id);
 		}
