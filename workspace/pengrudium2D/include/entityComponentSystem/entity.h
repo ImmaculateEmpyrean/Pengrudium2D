@@ -15,8 +15,14 @@ namespace penguin2D
 	class entity
 	{
 	public:
+		entity() = delete; //no entity can be created without first specifying which scene it belongs to..
 		entity(entt::entity entity,std::shared_ptr<scene> scenePtr);
+
+	private:
 		entity(std::shared_ptr<scene> scenePtr);
+
+	public:
+		static entity createEntity(std::shared_ptr<scene> scenePtr);
 
 	public:
 		template<typename T,typename... ARGS>

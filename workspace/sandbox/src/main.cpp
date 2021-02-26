@@ -6,7 +6,7 @@
 
 #include "entityComponentSystem/systems/scriptProcessingSystem.h"
 
-#include "uuid.h"
+#include "core/core.h"
 
 using namespace penguin2D;
 
@@ -28,17 +28,9 @@ public:
 
 int main()
 {
-	/*std::shared_ptr<scene> sc = std::make_shared<scene>();
+	initializeEngine();
+	std::shared_ptr<scene> sc = std::make_shared<scene>();
+	auto ent = entity::createEntity(sc);
 
-	entity ent(sc);
-	ent.addComponent<nameComponent>(std::string("hanna"));
-	ent.addComponent<scriptComponent>(new testScriptComponent(ent));
-
-	for(int i=0;i<1000;i++)
-	{
-		penguin2D::scheduleOnUpdateSystem(sc);
-	}*/
-
-	uuids::uuid uid = uuids::uuid_system_generator{}();
-	std::cout << uid << std::endl;
+	std::cout << "entity id : " << ent.getComponent<idComponent>().m_id << std::endl;
 }
