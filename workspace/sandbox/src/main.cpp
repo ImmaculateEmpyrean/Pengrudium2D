@@ -6,6 +6,8 @@
 
 #include "entityComponentSystem/systems/scriptProcessingSystem.h"
 
+#include "uuid.h"
+
 using namespace penguin2D;
 
 struct testScriptComponent : scriptable
@@ -26,7 +28,7 @@ public:
 
 int main()
 {
-	std::shared_ptr<scene> sc = std::make_shared<scene>();
+	/*std::shared_ptr<scene> sc = std::make_shared<scene>();
 
 	entity ent(sc);
 	ent.addComponent<nameComponent>(std::string("hanna"));
@@ -35,5 +37,8 @@ int main()
 	for(int i=0;i<1000;i++)
 	{
 		penguin2D::scheduleOnUpdateSystem(sc);
-	}
+	}*/
+
+	uuids::uuid uid = uuids::uuid_system_generator{}();
+	std::cout << uid << std::endl;
 }

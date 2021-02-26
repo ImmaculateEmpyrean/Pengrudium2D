@@ -26,6 +26,7 @@ project "editor" -- a good enough project name for the project which literally i
         "%{IncludeDir.entt}",
         "%{IncludeDir.nlohmannJson}",
         "%{IncludeDir.glm}",
+        "%{IncludeDir.stduuid}",
         "src",
         "src/PCH"
     }
