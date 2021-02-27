@@ -1,5 +1,5 @@
 #pragma once
-namespace Ermine
+namespace penguin2D
 {
 	enum class eventType : unsigned int
 	{
