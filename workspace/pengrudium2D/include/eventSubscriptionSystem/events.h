@@ -1,4 +1,6 @@
 #pragma once
+#include "events/eventBase.h"
+#include "events/observerEvent.h"
 
 #include "events/characterPressed.h"
 #include "events/cursorPositionChanged.h"

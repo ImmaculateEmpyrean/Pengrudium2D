@@ -3,7 +3,8 @@
 #include<vector>
 #include<string>
 
-#include "events.h"
+#include "entityComponentSystem/entity.h"
+#include "eventSubscriptionSystem/events.h"
 
 namespace penguin2D
 {
@@ -13,8 +14,10 @@ namespace penguin2D
 		eventBroadcastStation() = default; //there is no point in constructing this object since all its methods are pretty much static..
 
 	public:
-		static void addSubscription();
-		static void removeSubscription();
+		static void addSubscription(penguin2D::entity observer, penguin2D::entity observee);
+		static void addSubscription(penguin2D::entity observer, penguin2D::eventType globalEventType);
+
+		static void removeSubscription(penguin2D::entity observer, penguin2D::eventType globalEventType);
 
 		static void broadcastSignal();
 		static void retrieveMail();

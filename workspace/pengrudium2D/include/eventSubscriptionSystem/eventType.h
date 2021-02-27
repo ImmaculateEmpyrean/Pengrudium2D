@@ -8,6 +8,7 @@ namespace penguin2D
 		cursorPositionChanged = 2,
 		keyPressed = 3,
 		mouseButtonClicked = 4,
-		scrolled = 5
+		scrolled = 5,
+		observer = 6
 	};
 }
