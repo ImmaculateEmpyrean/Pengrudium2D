@@ -12,7 +12,7 @@ namespace penguin2D
 		{}
 
 	public:
-		virtual eventType GetEventType() override { return eventType::mouseButtonClicked; }
+		virtual eventType getEventType() override { return eventType::mouseButtonClicked; }
 
 		int m_button;
 		int m_action;

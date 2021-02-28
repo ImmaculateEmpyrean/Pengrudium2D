@@ -12,7 +12,7 @@ namespace penguin2D
 		{}
 
 	public:
-		virtual eventType GetEventType() override { return eventType::keyPressed; }
+		virtual eventType getEventType() override { return eventType::keyPressed; }
 
 		int m_key;
 		int m_scancode;

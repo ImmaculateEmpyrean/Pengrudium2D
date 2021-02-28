@@ -12,7 +12,7 @@ namespace penguin2D
 		{}
 
 	public:
-		virtual eventType GetEventType() override { return eventType::cursorPositionChanged; }
+		virtual eventType getEventType() override { return eventType::cursorPositionChanged; }
 		
 		int m_xpos;
 		int m_ypos;

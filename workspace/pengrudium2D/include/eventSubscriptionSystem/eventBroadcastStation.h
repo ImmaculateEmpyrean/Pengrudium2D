@@ -1,7 +1,6 @@
 #pragma once
 #include<memory>
-#include<vector>
-#include<string>
+#include<queue>
 
 #include "entityComponentSystem/entity.h"
 #include "eventSubscriptionSystem/events.h"
@@ -11,15 +10,23 @@ namespace penguin2D
 	class eventBroadcastStation
 	{
 	public:
-		eventBroadcastStation() = default; //there is no point in constructing this object since all its methods are pretty much static..
+		eventBroadcastStation() = default;
 
 	public:
-		static void addSubscription(penguin2D::entity observer, penguin2D::entity observee);
-		static void addSubscription(penguin2D::entity observer, penguin2D::eventType globalEventType);
+		static void addSubscription(entity observer, entity observee, signalType signal);	
+		static void addSubscription(entity observer, eventType globalEventType);
 
-		static void removeSubscription(penguin2D::entity observer, penguin2D::eventType globalEventType);
+		static void removeSubscription(entity observer, entity observee, signalType signal);
+		static void removeSubscription(entity observer, eventType globalEventType);
 
-		static void broadcastSignal();
-		static void retrieveMail();
+		static void broadcastGlobalEvent(std::shared_ptr<eventBase> brdcstEvent);
+		static void broadcastSignal(std::shared_ptr<observerEvent> brdcstEvent);
+
+		static std::queue<std::shared_ptr<eventBase>> retrieveMail(entity reciever);
+
+
+	private:
+		static void jobUpdateMail(std::shared_ptr<eventBase> brdcstEvent);
+		static void jobUpdateMail(std::shared_ptr<observerEvent> brdcstEvent);
 	};
 }

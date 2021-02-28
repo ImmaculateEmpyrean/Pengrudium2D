@@ -1,9 +1,11 @@
 #pragma once
-#include "eventSubscriptionSystem/globalEvents/eventBase.h"
+#include "eventSubscriptionSystem/Events/eventBase.h"
 #include "entityComponentSystem/entity.h"
 
 namespace penguin2D
 {
+	using signalType = std::uint32_t;
+
 	class observerEvent : public penguin2D::eventBase
 	{
 	public:
@@ -15,6 +17,9 @@ namespace penguin2D
 		virtual ~observerEvent() {};
 
 	public:
+		virtual eventType	getEventType() { return eventType::observer; };
+		virtual signalType	getSignalType() = 0;
+
 		template<typename T>
 		T getSenderComponent() { return m_sender.getComponent<T>(); };
 		template<typename T>

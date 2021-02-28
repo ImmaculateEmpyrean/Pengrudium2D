@@ -13,7 +13,7 @@ namespace penguin2D
 		{}
 
 	public:
-		virtual eventType GetEventType() override { return eventType::characterPressed; }
+		virtual eventType getEventType() override { return eventType::characterPressed; }
 		
 		unsigned int m_characterPressed;
 	};

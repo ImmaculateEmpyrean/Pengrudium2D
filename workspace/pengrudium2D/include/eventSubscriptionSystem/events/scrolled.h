@@ -13,7 +13,7 @@ namespace penguin2D
 		{}
 
 	public:
-		virtual eventType GetEventType() override { return eventType::scrolled; }
+		virtual eventType getEventType() override { return eventType::scrolled; }
 
 		double m_xoffset;
 		double m_yoffset;

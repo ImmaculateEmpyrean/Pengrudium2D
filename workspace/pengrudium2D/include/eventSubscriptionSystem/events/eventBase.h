@@ -9,7 +9,7 @@ namespace penguin2D
 		virtual ~eventBase() {};
 
 	public:
-		virtual eventType GetEventType() = 0;
+		virtual eventType getEventType() = 0;
 
 	};
 }
