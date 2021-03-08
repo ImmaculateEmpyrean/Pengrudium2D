@@ -30,7 +30,7 @@ namespace penguin2D
 	void eventBroadcastStation::addSubscription(entity observer, entity observee, signalType signal)
 	{
 		auto idObserver = observer.getComponent<idComponent>().m_id;
-		auto idObservee = observer.getComponent<idComponent>().m_id;
+		auto idObservee = observee.getComponent<idComponent>().m_id;
 
 		auto iter = storage[idObserver].observees.find(idObservee);
 
@@ -102,10 +102,15 @@ namespace penguin2D
 			for (auto& i : storage)
 			{
 				box& bx = i.second;
-				if (bx.observees.find(brdcstEvent->getSenderComponent<idComponent>().m_id) != bx.observees.end())
+				uuids::uuid senderID = brdcstEvent->getSenderComponent<idComponent>().m_id;
+
+				if (bx.observees.find(senderID) != bx.observees.end())
 				{
-					std::lock_guard<std::mutex> gaurd(bx.boxMutex);
-					bx.m_eventBuffer.push(brdcstEvent);
+					if (bx.observees[senderID].find(brdcstEvent->getSignalType()) != bx.observees[senderID].end())
+					{
+						std::lock_guard<std::mutex> gaurd(bx.boxMutex);
+						bx.m_eventBuffer.push(brdcstEvent);
+					}
 				}
 			}
 			});

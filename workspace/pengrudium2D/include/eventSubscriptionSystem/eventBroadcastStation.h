@@ -22,11 +22,6 @@ namespace penguin2D
 		static void broadcastGlobalEvent(std::shared_ptr<eventBase> brdcstEvent);
 		static void broadcastSignal(std::shared_ptr<observerEvent> brdcstEvent);
 
-		static std::queue<std::shared_ptr<eventBase>> retrieveMail(entity reciever);
-
-
-	private:
-		static void jobUpdateMail(std::shared_ptr<eventBase> brdcstEvent);
-		static void jobUpdateMail(std::shared_ptr<observerEvent> brdcstEvent);
+		static std::queue<std::shared_ptr<eventBase>> retrieveMail(entity reciever);	
 	};
 }
