@@ -27,12 +27,14 @@ project "sandbox" -- a good enough project name for the project which literally 
         "%{IncludeDir.nlohmannJson}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.stduuid}",
+        "%{IncludeDir.asynqro}",
         "src",
         "src/PCH"
     }
 
     links {
-        "pengrudium2D"
+        "pengrudium2D",
+        "asynqro"
     }
 
     filter "configurations:debug"
