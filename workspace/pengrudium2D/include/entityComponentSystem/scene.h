@@ -7,7 +7,8 @@
 
 namespace penguin2D
 {
-	class entity;
+	class entityI;
+
 	class scene
 	{
 	public:
@@ -20,6 +21,6 @@ namespace penguin2D
 	private:
 		entt::registry m_sceneRegistry;
 
-		friend class penguin2D::entity;
+		friend class penguin2D::entityI;
 	};
 }

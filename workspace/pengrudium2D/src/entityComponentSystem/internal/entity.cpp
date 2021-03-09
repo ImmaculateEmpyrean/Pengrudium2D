@@ -26,22 +26,22 @@ namespace penguin2D
 
 namespace penguin2D
 {
-	entity::entity(entt::entity entity, std::shared_ptr<scene> scenePtr)
+	entityI::entityI(entt::entity entity, std::shared_ptr<scene> scenePtr)
 		:
 		m_id(entity),
 		m_sceneRef(scenePtr)
 	{}
 
-	entity::entity(std::shared_ptr<scene> scenePtr)
+	entityI::entityI(std::shared_ptr<scene> scenePtr)
 		:
 		m_sceneRef(scenePtr)
 	{	
-		m_id = m_sceneRef->m_sceneRegistry.create(); 
+		m_id = m_sceneRef->m_sceneRegistry.create();
 	}
 
-	entity entity::createEntity(std::shared_ptr<scene> scenePtr)
+	entityI entityI::createEntity(std::shared_ptr<scene> scenePtr)
 	{
-		entity ent(scenePtr);
+		entityI ent(scenePtr);
 		ent.addComponent<idComponent>(uuidGenerator());
 
 		return ent;
