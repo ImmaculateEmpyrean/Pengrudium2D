@@ -2,11 +2,13 @@
 #include<memory>
 #include<queue>
 
-#include "entityComponentSystem/entity.h"
 #include "eventSubscriptionSystem/events.h"
 
 namespace penguin2D
 {
+
+	class entity;
+
 	class eventBroadcastStation
 	{
 	public:

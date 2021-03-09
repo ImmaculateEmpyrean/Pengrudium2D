@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "eventSubscriptionSystem/eventBroadcastStation.h"
 
+#include "entityComponentSystem/entity.h"
+
 #include "asynqro/asynqro"
 
 #include "uuid.h"
@@ -102,7 +104,13 @@ namespace penguin2D
 			for (auto& i : storage)
 			{
 				box& bx = i.second;
-				uuids::uuid senderID = brdcstEvent->getSenderComponent<idComponent>().m_id;
+				uuids::uuid senderID;
+
+				auto optionalId = brdcstEvent->tryGetSenderComponent<idComponent>();
+				if (optionalId.has_value())
+					senderID = (*optionalId).m_id;
+				else
+					logConsoleError("detected an entity with no id.. this is probably extremely dangerous {} {}",__LINE__,__FUNCSIG__);
 
 				if (bx.observees.find(senderID) != bx.observees.end())
 				{

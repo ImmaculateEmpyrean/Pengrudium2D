@@ -10,6 +10,8 @@
 #include "entt.h"
 #include "scene.h"
 
+//#include "eventSubscriptionSystem/eventBroadcastStation.h"
+
 namespace penguin2D
 {
 	class entity
@@ -62,6 +64,24 @@ namespace penguin2D
 		{
 			m_sceneRef->m_sceneRegistry.remove<T>(m_id);
 		}
+
+
+		template<typename EVENT,typename... ARGS>
+		void broadcastGlobalEvent(ARGS... args)
+		{
+			std::shared_ptr<EVENT> brdcstEvent = std::make_shared<EVENT>(std::forward(args...));
+			penguin2D::eventBroadcastStation::broadcastGlobalEvent(brdcstEvent);
+		}
+		
+
+		/*void broadcastSignal	 (penguin2D::signalType signalNumber);
+		
+		void addSubscription(penguin2D::eventType sigTyp);
+		void addSubscription(penguin2D::entity observee, penguin2D::signalType sig);
+
+		void removeSubscription(penguin2D::eventType eventType);
+		void removeSubscription(penguin2D::entity observee);
+		void removeSubscription(penguin2D::entity observee, penguin2D::signalType sig);*/
 
 	private:
 		entt::entity m_id;

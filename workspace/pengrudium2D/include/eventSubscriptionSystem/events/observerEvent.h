@@ -2,10 +2,10 @@
 #include "eventSubscriptionSystem/Events/eventBase.h"
 #include "entityComponentSystem/entity.h"
 
+#include<optional>
+
 namespace penguin2D
 {
-	using signalType = std::uint32_t;
-
 	class observerEvent : public penguin2D::eventBase
 	{
 	public:
@@ -20,8 +20,13 @@ namespace penguin2D
 		virtual eventType	getEventType() { return eventType::observer; };
 		virtual signalType	getSignalType() = 0;
 
+		//this only has a try get component because the sender may be invalid by the time we try to get its component..
+		//as of this writing.. the ABA problem may potentially exist as I have not checked entt..
 		template<typename T>
-		T getSenderComponent() { return m_sender.getComponent<T>(); };
+		std::optional<T> tryGetSenderComponent()	{return m_sender.tryGetComponent<T>();};
+		
+		//note- this looks more useful than it is.. only atomic operations are guarenteed u cannot assume this component still exists after 
+		//		any amount of time whatsoever.
 		template<typename T>
 		bool senderHasComponent() { return m_sender.componentExists<T>(); };
 

@@ -1,6 +1,8 @@
 #pragma once
 namespace penguin2D
 {
+	using signalType = std::uint32_t;
+
 	enum class eventType : unsigned int
 	{
 		NONE = 0,

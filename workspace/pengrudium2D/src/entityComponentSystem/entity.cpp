@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "entityComponentSystem/entity.h"
-
 #include "entityComponentSystem/component.h"
 
 using namespace entt;
