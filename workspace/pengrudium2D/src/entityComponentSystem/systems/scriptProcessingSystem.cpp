@@ -15,7 +15,7 @@ using namespace entt;
 
 void penguin2D::scheduleOnUpdateSystem(shared_ptr<scene> scenePtr)
 {
-	auto& registry = scenePtr->getRegistry();
+	/*auto& registry = scenePtr->getRegistry();
 	auto& view = registry.view<scriptComponent>();
 	
 	for (auto& i : view)
@@ -23,5 +23,5 @@ void penguin2D::scheduleOnUpdateSystem(shared_ptr<scene> scenePtr)
 		penguin2D::entity obj(i, scenePtr);
 		auto& scrComponent = obj.getComponent<scriptComponent>();
 		scrComponent.m_script->onUpdate();
-	}
+	}*/
 }

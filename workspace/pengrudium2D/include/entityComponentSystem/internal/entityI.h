@@ -18,11 +18,12 @@ namespace penguin2D
 		entityI() = delete; //no entity can be created without first specifying which scene it belongs to..
 		entityI(entt::entity entity,std::shared_ptr<scene> scenePtr);
 
-	private:
+	protected:
+		//this is used to generate an entityI using the factory function..
 		entityI(std::shared_ptr<scene> scenePtr);
 
 	public:
-		static entityI createEntity(std::shared_ptr<scene> scenePtr);
+		inline static entityI createEntity(std::shared_ptr<scene> scenePtr);
 
 	public:
 		template<typename T,typename... ARGS>
@@ -62,24 +63,6 @@ namespace penguin2D
 		{
 			m_sceneRef->m_sceneRegistry.remove<T>(m_id);
 		}
-
-
-		template<typename EVENT,typename... ARGS>
-		void broadcastGlobalEvent(ARGS... args)
-		{
-			std::shared_ptr<EVENT> brdcstEvent = std::make_shared<EVENT>(std::forward(args...));
-			penguin2D::eventBroadcastStation::broadcastGlobalEvent(brdcstEvent);
-		}
-		
-
-		/*void broadcastSignal	 (penguin2D::signalType signalNumber);
-		
-		void addSubscription(penguin2D::eventType sigTyp);
-		void addSubscription(penguin2D::entity observee, penguin2D::signalType sig);
-
-		void removeSubscription(penguin2D::eventType eventType);
-		void removeSubscription(penguin2D::entity observee);
-		void removeSubscription(penguin2D::entity observee, penguin2D::signalType sig);*/
 
 	private:
 		entt::entity m_id;

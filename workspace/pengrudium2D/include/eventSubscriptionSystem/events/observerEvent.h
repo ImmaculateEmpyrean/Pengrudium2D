@@ -1,6 +1,6 @@
 #pragma once
 #include "eventSubscriptionSystem/Events/eventBase.h"
-#include "entityComponentSystem/entity.h"
+#include "entityComponentSystem/internal/entityI.h"
 
 #include<optional>
 
@@ -10,7 +10,7 @@ namespace penguin2D
 	{
 	public:
 		observerEvent() = delete;
-		observerEvent(penguin2D::entity sender)
+		observerEvent(penguin2D::entityI sender)
 			: eventBase(),m_sender(sender)
 		{}
 
@@ -31,6 +31,6 @@ namespace penguin2D
 		bool senderHasComponent() { return m_sender.componentExists<T>(); };
 
 	private:
-		penguin2D::entity m_sender;
+		penguin2D::entityI m_sender;
 	};
 }

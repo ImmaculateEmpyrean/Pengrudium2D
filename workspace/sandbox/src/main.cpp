@@ -45,8 +45,8 @@ int main()
 	initializeEngine();
 	std::shared_ptr<scene> sc = std::make_shared<scene>();
 
-	auto ent = entity::createEntity(sc);
-	auto ent2 = entity::createEntity(sc);
+	penguin2D::entity ent	=	entity::createEntity(sc);
+	penguin2D::entity ent2	=	entity::createEntity(sc);
 
 	eventBroadcastStation::addSubscription(ent, ent2, 5);
 	//eventBroadcastStation::addSubscription(ent2, ent, 5);

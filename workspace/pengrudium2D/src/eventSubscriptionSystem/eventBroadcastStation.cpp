@@ -14,14 +14,18 @@ static struct box
 {
 	box()
 	{
-		m_intrestedEvents.resize(7,0);
+		m_intrestedGlobalEvents.resize(7,0);
 	}
 
+	//all the entities being observed by this observer
 	std::unordered_map<uuids::uuid, std::set<signalType>> observees;
+	//all the global events this observer is intrested in
+	std::vector<std::uint32_t> m_intrestedGlobalEvents;
 
-	std::vector<std::uint32_t> m_intrestedEvents;
+	//the queue of all the events polled for this observer
 	std::queue<std::shared_ptr<eventBase>> m_eventBuffer;
 
+	//this mutex is to be acquired to gain write access to this box as a ehole..
 	std::mutex boxMutex;
 };
 
@@ -29,7 +33,7 @@ static std::unordered_map<uuids::uuid, box> storage;
 
 namespace penguin2D
 {
-	void eventBroadcastStation::addSubscription(entity observer, entity observee, signalType signal)
+	void eventBroadcastStation::addSubscription(entityI observer, entityI observee, signalType signal)
 	{
 		auto idObserver = observer.getComponent<idComponent>().m_id;
 		auto idObservee = observee.getComponent<idComponent>().m_id;
@@ -47,17 +51,17 @@ namespace penguin2D
 			storage[idObserver].observees.emplace(std::make_pair(idObservee, std::set<signalType>({ signal })));
 		}
 	}
-	void eventBroadcastStation::addSubscription(entity observer, eventType globalEventType)
+	void eventBroadcastStation::addSubscription(entityI observer, eventType globalEventType)
 	{
 		auto idObserver = observer.getComponent<idComponent>().m_id;
 		{
 			std::lock_guard gaurd(storage[idObserver].boxMutex);
-			storage[idObserver].m_intrestedEvents[(unsigned int)globalEventType] = 1;
+			storage[idObserver].m_intrestedGlobalEvents[(unsigned int)globalEventType] = 1;
 		}
 	}
 
 
-	void eventBroadcastStation::removeSubscription(entity observer, entity observee, signalType signal)
+	void eventBroadcastStation::removeSubscription(entityI observer, entityI observee, signalType signal)
 	{
 		auto idObserver = observer.getComponent<idComponent>().m_id;
 		auto idObservee = observee.getComponent<idComponent>().m_id;
@@ -71,17 +75,39 @@ namespace penguin2D
 		}
 		else return;
 	}
-	void eventBroadcastStation::removeSubscription(entity observer,eventType globalEvent)
+	void eventBroadcastStation::removeSubscription(entityI observer, entityI observee)
+	{
+		auto idObserver = observer.getComponent<idComponent>().m_id;
+		auto idObservee = observee.getComponent<idComponent>().m_id;
+
+		storage[idObserver].observees.erase(idObservee);
+	}
+	void eventBroadcastStation::removeSubscription(entityI observer,eventType globalEvent)
 	{
 		auto idObserver = observer.getComponent<idComponent>().m_id;
 
 		{
 			std::lock_guard gaurd(storage[idObserver].boxMutex);
-			storage[idObserver].m_intrestedEvents[(std::uint32_t)globalEvent] = 0;
+			storage[idObserver].m_intrestedGlobalEvents[(std::uint32_t)globalEvent] = 0;
 		}
+	}
+	void eventBroadcastStation::removeSubscription(entityI observer)
+	{
+		auto idObserver = observer.getComponent<idComponent>().m_id;
+		storage.erase(idObserver);
 	}
 
 
+	void eventBroadcastStation::broadcastEvent(std::shared_ptr<eventBase> brdcstEvent)
+	{
+		//check if the recieved event is potentially an observer event..
+		auto brdcstEventObserver = std::dynamic_pointer_cast<observerEvent>(brdcstEvent);
+
+		if (brdcstEventObserver)
+			broadcastSignal(brdcstEventObserver);
+		else
+			broadcastGlobalEvent(brdcstEvent);
+	}
 	void eventBroadcastStation::broadcastGlobalEvent(std::shared_ptr<eventBase> brdcstEvent)
 	{
 		//the job scheduler in the future is expected to have an api defined specifically for this engine in question 
@@ -89,7 +115,7 @@ namespace penguin2D
 			for (auto& i : storage)
 			{
 				box& bx = i.second;
-				if (bx.m_intrestedEvents[(uint32_t)brdcstEvent->getEventType()] == 1)
+				if (bx.m_intrestedGlobalEvents[(uint32_t)brdcstEvent->getEventType()] == 1)
 				{
 					std::lock_guard<std::mutex> gaurd(bx.boxMutex);
 					bx.m_eventBuffer.push(brdcstEvent);
@@ -125,7 +151,7 @@ namespace penguin2D
 	}
 
 
-	std::queue<std::shared_ptr<eventBase>> eventBroadcastStation::retrieveMail(entity reciever)
+	std::queue<std::shared_ptr<eventBase>> eventBroadcastStation::retrieveMail(entityI reciever)
 	{
 		auto idObserver = reciever.getComponent<idComponent>().m_id;
 		std::queue<std::shared_ptr<eventBase>> eventBuffer;

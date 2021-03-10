@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "entityComponentSystem/entity.h"
+#include "entityComponentSystem/internal/entityI.h"
+
 #include "entityComponentSystem/component.h"
 
 using namespace entt;
@@ -37,13 +38,11 @@ namespace penguin2D
 		m_sceneRef(scenePtr)
 	{	
 		m_id = m_sceneRef->m_sceneRegistry.create();
+		m_sceneRef->m_sceneRegistry.emplace<idComponent>(m_id, uuidGenerator());
 	}
 
 	entityI entityI::createEntity(std::shared_ptr<scene> scenePtr)
 	{
-		entityI ent(scenePtr);
-		ent.addComponent<idComponent>(uuidGenerator());
-
-		return ent;
+		return entityI(scenePtr);
 	}
 }
