@@ -21,7 +21,7 @@ namespace penguin2D
 		template<typename EVENTCLASS, typename... ARGS>
 		void broadcastEvent(ARGS... args)
 		{
-			std::shared_ptr<EVENTCLASS> brdcstEvent = std::make_shared<EVENTCLASS>(std::forward(args...));
+			std::shared_ptr<EVENTCLASS> brdcstEvent = std::make_shared<EVENTCLASS>(*this,std::forward(args)...);
 			penguin2D::eventBroadcastStation::broadcastEvent(brdcstEvent);
 		}
 
