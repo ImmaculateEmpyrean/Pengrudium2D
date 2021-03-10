@@ -51,12 +51,6 @@ int main()
 	ent.addSubscription(ent2, 5);
 	ent2.broadcastEvent<testEvent>();
 
-	/*eventBroadcastStation::addSubscription(ent, ent2, 5);
-	//eventBroadcastStation::addSubscription(ent2, ent, 5);
-
-	std::shared_ptr<observerEvent> eve = std::make_shared<testEvent>(ent2);
-	eventBroadcastStation::broadcastSignal(eve);*/
-
 	while (true)
 	{
 		auto mail  = eventBroadcastStation::retrieveMail(ent);

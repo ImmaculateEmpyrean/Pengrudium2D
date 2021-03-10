@@ -1,6 +1,8 @@
 #pragma once
 #include "internal/entityI.h"
+
 #include "eventSubscriptionSystem/eventType.h"
+#include "eventSubscriptionSystem/events.h"
 
 namespace penguin2D
 {
@@ -18,12 +20,37 @@ namespace penguin2D
 		static entity createEntity(std::shared_ptr<scene> scenePtr);
 
 	public:
-		template<typename EVENTCLASS, typename... ARGS>
+		template<typename EVENTCLASS,
+			typename std::enable_if_t<!std::is_base_of<eventBase, EVENTCLASS>::value, bool> = true,
+			typename std::enable_if_t<!std::is_base_of<observerEvent, EVENTCLASS>::value, bool> = true,
+			typename... ARGS
+		>
+			void broadcastEvent(ARGS... args)
+		{
+				logConsoleError("the event type does not derive either from eventBase or observerEvent, making it imposible for the event system to accept {} {} {}",
+					__FUNCSIG__, __LINE__,__FILE__);
+		}
+
+		template<typename EVENTCLASS, 
+			typename std::enable_if_t<std::is_base_of<eventBase, EVENTCLASS>::value,bool> = true,
+			typename std::enable_if_t<!std::is_base_of<observerEvent, EVENTCLASS>::value, bool> = true,
+			typename... ARGS>
+			void broadcastEvent(ARGS... args)
+		{
+			std::shared_ptr<EVENTCLASS> brdcstEvent = std::make_shared<EVENTCLASS>(std::forward(args)...);
+			penguin2D::eventBroadcastStation::broadcastGlobalEvent(brdcstEvent);
+		}
+
+		template<typename EVENTCLASS,
+			typename std::enable_if_t<std::is_base_of<eventBase, EVENTCLASS>::value, bool> = true,
+			typename std::enable_if_t<std::is_base_of<observerEvent,EVENTCLASS>::value,bool> = true,
+			typename... ARGS>
 		void broadcastEvent(ARGS... args)
 		{
 			std::shared_ptr<EVENTCLASS> brdcstEvent = std::make_shared<EVENTCLASS>(*this,std::forward(args)...);
-			penguin2D::eventBroadcastStation::broadcastEvent(brdcstEvent);
+			penguin2D::eventBroadcastStation::broadcastSignal(brdcstEvent);
 		}
+
 
 		void addSubscription(penguin2D::eventType eveType);
 		void addSubscription(penguin2D::entity observee, penguin2D::signalType sig);
