@@ -2,13 +2,15 @@
 #include<string>
 #include<utility>
 
+#include "window.h"
+
 namespace penguin2D
 {
 	class app
 	{
 	public:
 		app(const std::string name,const int width,const int height)
-			: m_name(name), m_width(width), m_height(height)
+			: winPtr(std::make_unique<window>(name,width,height))
 		{}
 		virtual ~app() {}
 
@@ -18,10 +20,10 @@ namespace penguin2D
 		app& operator=(app&& rhs) noexcept { app::move(std::move(rhs)); }
 
 	public:
-		std::string getAppName() const { return m_name; }
-		std::pair<int, int> getAppDiamensions() const { return std::make_pair(m_width, m_height); }
-		int getAppWidth()  const { return m_width;	};
-		int getAppHeight() const { return m_height; };
+		std::string getAppName() const noexcept { return winPtr->getWindowTitle(); }
+		std::pair<int, int> getAppDiamensions() const { return winPtr->getWindowDiamensions(); }
+		int getAppWidth()  const noexcept { return winPtr->getWindowWidth();	};
+		int getAppHeight() const noexcept { return winPtr->getWindowHeight(); };
 
 	public:
 		void execute();
@@ -30,8 +32,6 @@ namespace penguin2D
 		void move(app&& rhs);
 
 	private:
-		std::string m_name;
-		int m_width;
-		int m_height;
+		std::unique_ptr<window> winPtr = nullptr;
 	};
 }
