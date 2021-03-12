@@ -12,9 +12,7 @@ namespace penguin2D
 	class window
 	{
 	public:
-		window(std::string title, int width, int height)
-			: m_title(title), m_width(width), m_height(height)
-		{}
+		 window(std::string title, int width, int height);
 		~window();
 
 	public:
@@ -28,6 +26,11 @@ namespace penguin2D
 		int getWindowWidth()		const noexcept	{ return m_width; }
 		int getWindowHeight()		const noexcept	{ return m_height; }
 		std::pair<int, int> getWindowDiamensions()	const	{return std::make_pair(m_width,m_height); }
+
+		bool destroyWindow() const {return glfwWindowShouldClose(m_winPtr); }
+
+		void preNewFrameProcess	();
+		void postNewFrameProcess();
 
 	private:
 		void move(window&& rhs);

@@ -25,6 +25,8 @@ namespace penguin2D
 		int getAppWidth()  const { return winPtr->getWindowWidth();	};
 		int getAppHeight() const { return winPtr->getWindowHeight(); };
 
+		bool quitApplication() const {return winPtr->destroyWindow(); }
+
 	public:
 		void execute();
 

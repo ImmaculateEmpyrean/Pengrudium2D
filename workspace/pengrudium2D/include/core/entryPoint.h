@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 {
 	auto app = penguin2D::getStartupApp();
 
-	while (true)
+	while (!app->quitApplication())
 	{
 		app->execute();
 	}
