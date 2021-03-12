@@ -1,22 +1,30 @@
-project "glad"
-    kind "StaticLib"
-    language "c"
+project "imgui"
+	kind "StaticLib"
+	language "C++"
+	cppdialect "C++17"
 
-    targetdir("../../bin/"  .. outputdir .. "/%{prj.name}")
-    objdir("../../bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("../../"..outputdir.."/%{prj.name}")
+	objdir ("../../bin-int/"..outputdir.."/%{prj.name}")
 
-    files{
-        "glad/src/glad.c",
-        "glad/include/khr/khrplatform.h",
-        "glad/include/glad/glad.h"
-    }
+	files
+	{
+		"imconfig.h",
+		"imgui.h",
+		"imgui.cpp",
+		"imgui_draw.cpp",
+		"imgui_internal.h",
+		"imgui_widgets.cpp",
+		"imstb_rectpack.h",
+		"imstb_textedit.h",
+		"imstb_truetype.h",
+		"imgui_demo.cpp"
+	}
 
-    includedirs { 
-        "glad/include",
-        "glad/src"
-   }
+	includedir {
+		"imgui"
+	}
 
-   filter "configurations:debug"
+	 filter "configurations:debug"
         defines{
           "PEngine_DEBUG"
         }
