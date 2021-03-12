@@ -4,6 +4,8 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<imgui.h>
+#include"imgui_impl_opengl3.h"
+#include"imgui_impl_glfw.h"
 
 namespace penguin2D
 {
@@ -36,6 +38,36 @@ namespace penguin2D
 			glfwTerminate();
 			exit(-1);
 		}
+
+
+		// Setup Dear ImGui context
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
+		auto io = &ImGui::GetIO();
+		io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+		io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+		io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+
+		// Setup Dear ImGui style
+		ImGui::StyleColorsDark();
+
+		// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
+		ImGuiStyle& style = ImGui::GetStyle();
+		if (io->ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			style.WindowRounding = 0.0f;
+			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+		}
+
+		// Setup Platform/Renderer bindings
+		ImGui_ImplGlfw_InitForOpenGL(m_winPtr, true);
+		ImGui_ImplOpenGL3_Init("#version 130");
+
+		logConsoleInfo("initialized window successfully");
+		logConsoleInfo("graphic card in usuage : {}", glGetString(GL_VENDOR));
+		logConsoleInfo("opengl renderer in use : {}", glGetString(GL_RENDERER));
+		logConsoleInfo("GLSL version : {}", glGetString(GL_SHADING_LANGUAGE_VERSION));
+		logConsoleInfo("GL   version : {}", glGetString(GL_VERSION));
 	}
 	window::~window()
 	{

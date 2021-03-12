@@ -17,11 +17,16 @@ project "imgui"
 		"imgui/imstb_rectpack.h",
 		"imgui/imstb_textedit.h",
 		"imgui/imstb_truetype.h",
-		"imgui/imgui_demo.cpp"
+		"imgui/imgui_impl_opengl3.h",
+		"imgui/imgui_impl_opengl3.cpp",
+		"imgui/imgui_impl_glfw.h",
+		"imgui/imgui_impl_glfw.cpp"
 	}
 
 	includedirs {
-		"imgui"
+		"imgui",
+		"../glfw/glfw-3.3.2/include",
+		"../glad/glad/include"
 	}
 
 	 filter "configurations:debug"
