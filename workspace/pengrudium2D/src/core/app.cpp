@@ -14,7 +14,7 @@ namespace penguin2D
 	void app::execute()
 	{
 		winPtr->preNewFrameProcess();
-		logConsoleTrace("running");
+		ImGui::ShowDemoWindow();
 		winPtr->postNewFrameProcess();
 	}
 }
