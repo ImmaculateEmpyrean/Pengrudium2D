@@ -28,6 +28,9 @@ project "editor" -- a good enough project name for the project which literally i
         "%{IncludeDir.glm}",
         "%{IncludeDir.stduuid}",
         "%{IncludeDir.asynqro}",
+        "%{IncludeDir.glfw}",
+        "%{IncludeDir.glad}",
+        "%{IncludeDir.imgui}",
         "src",
         "src/PCH"
     }
@@ -35,7 +38,10 @@ project "editor" -- a good enough project name for the project which literally i
     links
     {
         "pengrudium2D",
-        "asynqro"
+        "asynqro",
+        "glfw",
+        "glad",
+        "imgui"
     }
 
     filter "configurations:debug"

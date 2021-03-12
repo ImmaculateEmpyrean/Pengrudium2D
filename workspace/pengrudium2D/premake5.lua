@@ -29,6 +29,9 @@ project "pengrudium2D" -- a good enough project name for the project which liter
         "%{IncludeDir.glm}",
         "%{IncludeDir.stduuid}",
         "%{IncludeDir.asynqro}",
+        "%{IncludeDir.glfw}",
+        "%{IncludeDir.glad}",
+        "%{IncludeDir.imgui}",
         "src/PCH"
     }
 

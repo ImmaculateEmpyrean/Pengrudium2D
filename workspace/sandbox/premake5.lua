@@ -28,13 +28,19 @@ project "sandbox" -- a good enough project name for the project which literally 
         "%{IncludeDir.glm}",
         "%{IncludeDir.stduuid}",
         "%{IncludeDir.asynqro}",
+        "%{IncludeDir.glfw}",
+        "%{IncludeDir.glad}",
+        "%{IncludeDir.imgui}",
         "src",
         "src/PCH"
     }
 
     links {
         "pengrudium2D",
-        "asynqro"
+        "asynqro",
+        "GLFW",
+        "glad",
+        "imgui"
     }
 
     filter "configurations:debug"

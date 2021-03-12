@@ -27,10 +27,16 @@ workspace "devPengrudium2D"
     IncludeDir["glm"]			= "%{wks.location}/vendor/glm/glm-0.9.9.8"
     IncludeDir["stduuid"]		= "%{wks.location}/vendor/stduuid/stduuid-1.0/include"
     IncludeDir["asynqro"]		= "%{wks.location}/vendor/asynqro/asynqro-0.8.0"
-    
+    IncludeDir["glfw"]          = "%{wks.location}/vendor/glfw/glfw-3.3.2/include"
+    IncludeDir["glad"]          = "%{wks.location}/vendor/glad/glad/include"
+    IncludeDir["imgui"]         = "%{wks.location}/vendor/imguiDocking/imgui"
+
     --the grouping refers to all the projects generated using third party source code. 
     group "vendor"
     include "vendor/asynqro"
+    include "vendor/glfw"
+    include "vendor/glad"
+    include "vendor/imguiDocking"
     group ""
 
     --projects to include in this solution

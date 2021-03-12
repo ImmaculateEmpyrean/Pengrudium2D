@@ -26,7 +26,7 @@ workspace "pengrudium2DTests"
     IncludeDir["nlohmannJson"]  = "%{wks.location}/../vendor/nlohmannJson/nlohmann-3.9.1"
     IncludeDir["glm"]           = "%{wks.location}/../vendor/glm/glm-0.9.9.8"
     IncludeDir["stduuid"]       = "%{wks.location}/../vendor/stduuid/stduuid-1.0/include"
-
+    
     --the grouping refers to all the projects generated using third party source code. 
     group "vendor"
     group ""
