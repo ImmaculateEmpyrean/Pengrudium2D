@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "core/entryPoint.h"
+
 #include "entityComponentSystem/scene.h"
 #include "entityComponentSystem/entity.h"
 #include "entityComponentSystem/component.h"
@@ -12,51 +14,15 @@
 
 using namespace penguin2D;
 
-struct testScriptComponent : scriptable
+class sandBoxApp : public app
 {
 public:
-	testScriptComponent() = delete; //since scriptable cannot be default constructed..
-	testScriptComponent(penguin2D::entity& ent)
-		:
-		scriptable(ent)
+	sandBoxApp()
+		: app("sandbox app",1280,720)
 	{}
-
-	virtual void onUpdate()
-	{
-		logConsoleInfo("update called");
-		logConsoleInfo("name of this entity is : {}", tryGetComponent<nameComponent>().value_or(nameComponent("test")).m_name);
-	}
 };
 
-class testEvent : public observerEvent
+std::unique_ptr<app> penguin2D::getStartupApp()
 {
-public:
-	testEvent::testEvent(penguin2D::entity sender)
-		:observerEvent(sender)
-	{}
-	virtual penguin2D::signalType getSignalType()
-	{
-		return 5;
-	}
-};
-
-int main()
-{
-	initializeEngine();
-	std::shared_ptr<scene> sc = std::make_shared<scene>();
-
-	penguin2D::entity ent	=	entity::createEntity(sc);
-	penguin2D::entity ent2	=	entity::createEntity(sc);
-
-	ent.addSubscription(ent2, 5);
-	ent2.broadcastEvent<testEvent>();
-
-	while (true)
-	{
-		auto mail  = eventBroadcastStation::retrieveMail(ent);
-		if (mail.size() > 0 )
-		{
-			logConsoleInfo("guess I recieved some mail.");
-		}
-	}
+	return std::make_unique<sandBoxApp>();
 }
