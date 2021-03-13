@@ -4,6 +4,8 @@
 
 #include "window.h"
 
+int main(int, char**);
+
 namespace penguin2D
 {
 	class app
@@ -28,12 +30,17 @@ namespace penguin2D
 		bool quitApplication() const {return winPtr->destroyWindow(); }
 
 	public:
-		void execute();
+		virtual void execute() {};
+
+	private:
+		void process();
 
 	private:
 		void move(app&& rhs);
 
 	private:
 		std::unique_ptr<window> winPtr = nullptr;
+
+		friend int ::main(int, char**);
 	};
 }

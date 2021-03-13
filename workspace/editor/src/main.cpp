@@ -9,6 +9,11 @@ public:
 	editorApp()
 		: app("penguin2D editor", 1280, 720)
 	{}
+
+	void execute()
+	{
+
+	}
 };
 
 std::unique_ptr<app> penguin2D::getStartupApp()

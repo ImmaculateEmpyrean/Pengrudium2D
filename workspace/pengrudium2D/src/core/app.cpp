@@ -11,10 +11,11 @@ namespace penguin2D
 		rhs.winPtr = nullptr;
 	}
 
-	void app::execute()
+
+	void app::process()
 	{
 		winPtr->preNewFrameProcess();
-		ImGui::ShowDemoWindow();
+		execute();
 		winPtr->postNewFrameProcess();
 	}
 }
