@@ -1,16 +1,5 @@
 #include "stdafx.h"
-
 #include "core/entryPoint.h"
-
-#include "entityComponentSystem/scene.h"
-#include "entityComponentSystem/entity.h"
-#include "entityComponentSystem/component.h"
-
-#include "entityComponentSystem/systems/scriptProcessingSystem.h"
-
-#include "eventSubscriptionSystem/eventBroadcastStation.h"
-
-#include "core/core.h"
 
 using namespace penguin2D;
 

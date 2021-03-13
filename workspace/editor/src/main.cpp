@@ -1,9 +1,17 @@
 #include "stdafx.h"
+#include "core/entryPoint.h"
 
-int main()
+using namespace penguin2D;
+
+class editorApp : public app
 {
-	std::cout << "hello from the editor" << std::endl;
+public:
+	editorApp()
+		: app("penguin2D editor", 1280, 720)
+	{}
+};
 
-	logConsoleInfo("Hey This is from the log {}",5);
-	logConsoleCritical("Hayakuu!! {}",1);
+std::unique_ptr<app> penguin2D::getStartupApp()
+{
+	return std::make_unique<editorApp>();
 }
