@@ -31,6 +31,7 @@ project "editor" -- a good enough project name for the project which literally i
         "%{IncludeDir.glfw}",
         "%{IncludeDir.glad}",
         "%{IncludeDir.imgui}",
+        "%{IncludeDir.imguiNode}",
         "src",
         "src/PCH"
     }
@@ -41,7 +42,8 @@ project "editor" -- a good enough project name for the project which literally i
         "asynqro",
         "glfw",
         "glad",
-        "imgui"
+        "imgui",
+        "imgui-node-editor"
     }
 
     filter "configurations:debug"

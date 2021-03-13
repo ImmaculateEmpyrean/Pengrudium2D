@@ -31,6 +31,7 @@ project "sandbox" -- a good enough project name for the project which literally 
         "%{IncludeDir.glfw}",
         "%{IncludeDir.glad}",
         "%{IncludeDir.imgui}",
+        "%{IncludeDir.imguiNode}",
         "src",
         "src/PCH"
     }
@@ -40,7 +41,8 @@ project "sandbox" -- a good enough project name for the project which literally 
         "asynqro",
         "GLFW",
         "glad",
-        "imgui"
+        "imgui",
+        "imgui-node-editor"
     }
 
     filter "configurations:debug"

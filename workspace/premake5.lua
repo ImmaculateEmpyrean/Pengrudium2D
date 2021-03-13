@@ -30,6 +30,7 @@ workspace "devPengrudium2D"
     IncludeDir["glfw"]          = "%{wks.location}/vendor/glfw/glfw-3.3.2/include"
     IncludeDir["glad"]          = "%{wks.location}/vendor/glad/glad/include"
     IncludeDir["imgui"]         = "%{wks.location}/vendor/imguiDocking/imgui"
+    IncludeDir["imguiNode"]    = "%{wks.location}/vendor/imgui-node-editor/imgui-node-editor"
 
     --the grouping refers to all the projects generated using third party source code. 
     group "vendor"
@@ -37,6 +38,7 @@ workspace "devPengrudium2D"
     include "vendor/glfw"
     include "vendor/glad"
     include "vendor/imguiDocking"
+    include "vendor/imgui-node-editor"
     group ""
 
     --projects to include in this solution
