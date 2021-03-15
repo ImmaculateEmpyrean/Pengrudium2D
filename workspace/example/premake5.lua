@@ -32,7 +32,11 @@ workspace "pengrudium2DExamples"
     group ""
 
     --this is the engine that is to be tested
-    include "../pengrudium2D"
+    externalproject "pengrudium2D"
+    location "../pengrudium2D"
+    uuid "57940020-8E99-AEB6-271F-61E0F7F6B73B"
+    kind "StaticLib"
+    language "C++"
 
     --the examples included must have their own premake5.lua file in their own folder..
     include "usingLogSystem"

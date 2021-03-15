@@ -27,12 +27,16 @@ workspace "pengrudium2DTests"
     IncludeDir["glm"]           = "%{wks.location}/../vendor/glm/glm-0.9.9.8"
     IncludeDir["stduuid"]       = "%{wks.location}/../vendor/stduuid/stduuid-1.0/include"
     
-    --the grouping refers to all the projects generated using third party source code. 
+    --the grouping refers to all the projects generated using third party source code.
     group "vendor"
     group ""
 
     --this is the engine that is to be tested
-    include "../pengrudium2D"
+   externalproject "pengrudium2D"
+   	location "../pengrudium2D"
+   	uuid "57940020-8E99-AEB6-271F-61E0F7F6B73B"
+   	kind "StaticLib"
+   	language "C++"
 
     --the tests included must have their own premake5.lua file in their own folder..
     include "logTest"

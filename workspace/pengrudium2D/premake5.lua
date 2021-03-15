@@ -1,4 +1,5 @@
 project "pengrudium2D" -- a good enough project name for the project which literally is the engine
+    uuid "57940020-8E99-AEB6-271F-61E0F7F6B73B"
     kind "StaticLib"   -- the archietecture goes something like, engine will be linked to any game which wants to use it statically there is no good reason to go dll.
     language "C++" 
     cppdialect "C++17" -- better go with the best fully supported standrad for c++ as of this writing.

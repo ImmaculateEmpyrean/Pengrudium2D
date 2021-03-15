@@ -1,3 +1,3 @@
+call generateDevelopmentEnvironment.bat
 call generateTest.bat
 call generateExample.bat
-call generateDevelopmentEnvironment.bat
