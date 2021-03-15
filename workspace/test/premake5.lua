@@ -26,9 +26,11 @@ workspace "pengrudium2DTests"
     IncludeDir["nlohmannJson"]  = "%{wks.location}/../vendor/nlohmannJson/nlohmann-3.9.1"
     IncludeDir["glm"]           = "%{wks.location}/../vendor/glm/glm-0.9.9.8"
     IncludeDir["stduuid"]       = "%{wks.location}/../vendor/stduuid/stduuid-1.0/include"
+    IncludeDir["googletest"]	= "%{wks.location}/../vendor/googleTest/googletest"
     
     --the grouping refers to all the projects generated using third party source code.
     group "vendor"
+    	include "../vendor/googleTest"
     group ""
 
     --this is the engine that is to be tested
@@ -40,3 +42,4 @@ workspace "pengrudium2DTests"
 
     --the tests included must have their own premake5.lua file in their own folder..
     include "logTest"
+    include "googletestDummy"
